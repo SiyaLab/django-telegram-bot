@@ -1,0 +1,56 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Start iSpaniBot Polling",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_polling.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Start Admin Server",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/manage.py",
+      "args": ["runserver"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    },
+    {
+      "name": "Start iSpaniBot and Admin Server",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/run_polling.py",
+      "console": "integratedTerminal",
+      "preLaunchTask": "startAdminServer",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "label": "startAdminServer",
+      "type": "shell",
+      "command": "python",
+      "args": ["${workspaceFolder}/manage.py", "runserver"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
